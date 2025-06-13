@@ -1,0 +1,13 @@
+sample_questions = [
+    "What are the main components of a RAG model?",
+    "Explain how positional encoding is implemented in Transformers and why it is necessary.",
+    "Describe the concept of multi-head attention in the Transformer architecture."
+]
+
+for question in sample_questions:
+    query_vector = model.encode(question)
+    top_chunks_indices = retrieve_similar(query_vector, vector_embeddings)
+    retrieved_chunks = [chunked_texts[i] for i in top_chunks_indices]
+    answer = generate_answer(retrieved_chunks)
+    sources = source_attribution(top_chunks_indices)
+    print(f"Question: {question}\nAnswer: {answer}\nSources: {sources}\n")

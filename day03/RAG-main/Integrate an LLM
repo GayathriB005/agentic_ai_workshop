@@ -1,0 +1,14 @@
+from transformers import pipeline
+
+# Load the answer generation model
+generator = pipeline('text-generation', model='gpt-3.5-turbo')
+
+def generate_answer(retrieved_chunks):
+    context = " ".join(retrieved_chunks)
+    prompt = f"Based on the following context, answer the question: {context}"
+    answer = generator(prompt, max_length=150)
+    return answer[0]['generated_text']
+
+# Generate an answer based on retrieved chunks
+retrieved_chunks = [chunked_texts[i] for i in top_chunks_indices]
+answer = generate_answer(retrieved_chunks)

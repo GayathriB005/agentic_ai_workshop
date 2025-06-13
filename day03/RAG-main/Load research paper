@@ -1,0 +1,14 @@
+import PyPDF2
+
+def load_pdfs(file_list):
+    text_chunks = []
+    for file in file_list:
+        with open(file, 'rb') as f:
+            reader = PyPDF2.PdfReader(f)
+            for page in reader.pages:
+                text_chunks.append(page.extract_text())
+    return text_chunks
+
+# Example usage
+file_list = ['1706.03762v7.pdf', '2005.11401v4.pdf', '2005.14165v4.pdf']
+text_chunks = load_pdfs(file_list)

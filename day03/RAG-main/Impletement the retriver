@@ -1,0 +1,13 @@
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+def retrieve_similar(query_vector, vectors, top_n=5):
+    similarities = cosine_similarity(query_vector.reshape(1, -1), vectors)
+    top_indices = similarities.argsort()[0][-top_n:][::-1]
+    return top_indices
+
+# Example query
+query = "What are the main components of a RAG model?"
+query_vector = model.encode(query)
+top_chunks_indices = retrieve_similar(query_vector, vector_embeddings)
+
