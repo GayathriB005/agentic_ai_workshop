@@ -1,0 +1,8 @@
+streamlit
+google-play-scraper
+langchain==0.1.13
+langchain-community==0.0.24
+langchain-google-genai
+tavily-python
+tiktoken
+langchain-openai
